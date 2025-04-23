@@ -4,34 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FlagGuesser</title>
+    <link rel="stylesheet" href="src/style/styles.css" />
   </head>
   <body>
-    <img src="#" alt="World map" />
-    <div id="container-intro">
-      <h1></h1>
+    <img id="background-image" src="src/assets/world-map.png" alt="World map" />
+
+    <div id="container-intro" class="shared-styles">
       <div id="container-player">
-        <h1></h1>
-        <input type="text" />
-        <button></button>
+        <h1 id="game-title">FlagGuesser</h1>
+        <h1 id="intro-title">Player Name</h1>
+        <input id="player-input" type="text" placeholder="Leeroy Jenkins...." />
+        <button id="button-play-game">PLAY</button>
       </div>
-      <div>
-        <h1></h1>
-        <p></p>
+      <div id="container-instructions" class="shared-styles">
+        <h1 id="instructions-title">Instructions</h1>
+        <ol id="instructions-ol">
+          <li>instruction</li>
+          <li>instruction</li>
+          <li>instruction</li>
+          <li>instruction</li>
+          <li>instruction</li>
+        </ol>
       </div>
     </div>
 
-    <div id="container-game">
+    <div id="container-game" class="shared-styles">
+      <div id="game-lives">0 0 0 0 0</div>
+      <div id="game-score">Score: 100</div>
       <div id="container-continents">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <ol>
+          <!--Will inject list from JS below is just for container arrangement.
+          Not added to CSS yet-->
+          <li id="continent 1">North America</li>
+          <li id="continent 2">South America</li>
+          <li id="continent 3">Europe</li>
+          <li id="continent 4">Asia</li>
+          <li id="continent 5">Africa</li>
+          <li id="continent 6">Australia</li>
+        </ol>
       </div>
     </div>
 
-    <div id="container-ending"></div>
+    <div id="container-ending" class="shared-styles">
+      <h1>GOOD GAME!</h1>
+      <div>
+        <h1 id="end-game-high-scores">High Scores</h1>
+        <ol id="end-game-high-scores-list">
+          <li>player: 500</li>
+          <li>player: 500</li>
+          <li>player: 500</li>
+          <li>player: 500</li>
+          <li>player: 500</li>
+        </ol>
+        <button id="button-play-again">Play Again</button>
+      </div>
+    </div>
 
     <script type="module" src="index.js"></script>
   </body>

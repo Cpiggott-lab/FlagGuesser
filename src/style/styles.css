@@ -1,0 +1,130 @@
+html,
+body {
+  font-family: "Russo One", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+button {
+  padding: 8px 20px;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+button:hover {
+  background-color: paleturquoise;
+  color: black;
+  opacity: 1;
+}
+/* background world map */
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+  z-index: -1;
+}
+.shared-styles {
+  background: rgba(0, 0, 0, 0.65);
+  color: turquoise;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+/* game intro */
+#container-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 60px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 40px;
+  padding-top: 0px;
+}
+#game-title {
+  font-size: 4rem;
+  top: 20px;
+  border: 8px solid turquoise;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+#intro-title {
+  font-size: 2rem;
+  margin: 0;
+  text-align: center;
+}
+#container-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+#intro-title {
+  border-bottom: 4px solid turquoise;
+  padding-bottom: 1%;
+  display: inline-block;
+}
+#player-input {
+  padding: 10px, 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  text-align: center;
+  width: 250px;
+  height: 30px;
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+#player-input:focus {
+  box-shadow: 0 0 8px turquoise;
+  transform: scale(1.03);
+}
+#container-instructions {
+  border: 6px solid turquoise;
+  padding: 5px;
+  display: inline-block;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+#instructions-title {
+  border-bottom: 4px solid turquoise;
+  display: inline-block;
+  margin-bottom: 0;
+}
+#instructions-ol {
+  width: 400px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: ;
+}
+/* game screen */
+#container-game {
+  display: none;
+}
+#game-lives {
+}
+#game-score {
+}
+#container-continents {
+}
+/* game over screen */
+#container-ending {
+  display: none;
+}
