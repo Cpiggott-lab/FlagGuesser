@@ -1,5 +1,7 @@
 # 🌍 FlagGuesser: The Continent Challenge 🎌
 
+Game URL: https://cpiggott-lab.github.io/FlagGuesser/
+
 **FlagGuesser** is an interactive drag-and-drop browser game where you test your geography skills by matching national flags to their correct continents. Think fast, toss accurately, and learn while you play!
 
 ## 🎮 How to Play

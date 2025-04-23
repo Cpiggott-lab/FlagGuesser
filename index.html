@@ -8,58 +8,88 @@
   </head>
   <body>
     <img id="background-image" src="src/assets/world-map.png" alt="World map" />
-
-    <div id="container-intro" class="shared-styles">
-      <div id="container-player">
-        <h1 id="game-title">FlagGuesser</h1>
-        <h1 id="intro-title">Player Name</h1>
-        <input id="player-input" type="text" placeholder="Leeroy Jenkins...." />
-        <button id="button-play-game">PLAY</button>
-      </div>
-      <div id="container-instructions" class="shared-styles">
-        <h1 id="instructions-title">Instructions</h1>
-        <ol id="instructions-ol">
-          <li>instruction</li>
-          <li>instruction</li>
-          <li>instruction</li>
-          <li>instruction</li>
-          <li>instruction</li>
-        </ol>
-      </div>
-    </div>
-
-    <div id="container-game" class="shared-styles">
-      <div id="game-lives">0 0 0 0 0</div>
-      <div id="game-score">Score: 100</div>
-      <div id="container-continents">
-        <ol>
-          <!--Will inject list from JS below is just for container arrangement.
-          Not added to CSS yet-->
-          <li id="continent 1">North America</li>
-          <li id="continent 2">South America</li>
-          <li id="continent 3">Europe</li>
-          <li id="continent 4">Asia</li>
-          <li id="continent 5">Africa</li>
-          <li id="continent 6">Australia</li>
-        </ol>
+    <!--intro screen-->
+    <div id="full-intro-container" class="main-screen">
+      <div id="container-intro" class="shared-styles screen-container">
+        <div id="container-player">
+          <h1 class="game-title">FlagGuesser</h1>
+          <h1 id="intro-title">Player Name</h1>
+          <input
+            id="player-input"
+            type="text"
+            placeholder="Leeroy Jenkins...."
+          />
+          <button id="button-play-game">PLAY</button>
+        </div>
+        <div id="container-instructions" class="shared-styles">
+          <h1 id="instructions-title">Instructions</h1>
+          <ol id="instructions-ol">
+            <li>instruction</li>
+            <li>instruction</li>
+            <li>instruction</li>
+            <li>instruction</li>
+            <li>instruction</li>
+          </ol>
+        </div>
       </div>
     </div>
-
-    <div id="container-ending" class="shared-styles">
-      <h1>GOOD GAME!</h1>
+    <!--game screen-->
+    <div id="full-game-container" class="hidden">
+      <div id="container-game" class="shared-styles">
+        <div id="game-lives">
+          <span class="life">💜</span>
+          <span class="life">💜</span>
+          <span class="life">💜</span>
+          <span class="life">💜</span>
+          <span class="life">💜</span>
+        </div>
+        <div id="game-score">Score: 0</div>
+      </div>
+      <!--hidden continent zones-->
       <div>
-        <h1 id="end-game-high-scores">High Scores</h1>
-        <ol id="end-game-high-scores-list">
-          <li>player: 500</li>
-          <li>player: 500</li>
-          <li>player: 500</li>
-          <li>player: 500</li>
-          <li>player: 500</li>
-        </ol>
-        <button id="button-play-again">Play Again</button>
+        <div class="continent-box" id="north-america">
+          <span class="continent-name">North America</span>
+        </div>
+        <div class="continent-box" id="south-america">
+          <span class="continent-name">South America</span>
+        </div>
+        <div class="continent-box" id="europe">
+          <span class="continent-name">Europe</span>
+        </div>
+        <div class="continent-box" id="asia">
+          <span class="continent-name">Asia</span>
+        </div>
+        <div class="continent-box" id="africa">
+          <span class="continent-name">Africa</span>
+        </div>
+        <div class="continent-box" id="australia">
+          <span class="continent-name">Australia</span>
+        </div>
+      </div>
+      <!--fill thorugh js-->
+      <div id="flag-row"></div>
+    </div>
+    <!--ending screen-->
+    <div id="full-end-game-container" class="hidden">
+      <!--class="hidden add back in once done working on end game screen-->
+      <div class="shared-styles screen-container">
+        <h1 class="game-title">FlagGuesser</h1>
+        <h3 id="gg-ending">GOOD GAME!</h3>
+        <div id="container-highscores" class="shared-styles">
+          <h1 id="end-game-high-scores">High Scores</h1>
+          <!--player 500 is a placeholder all list contents will be removed once in js-->
+          <ol id="end-game-high-scores-list">
+            <li>player: 500</li>
+            <li>player: 500</li>
+            <li>player: 500</li>
+            <li>player: 500</li>
+            <li>player: 500</li>
+          </ol>
+          <button id="button-play-again">Play Again</button>
+        </div>
       </div>
     </div>
 
-    <script type="module" src="index.js"></script>
+    <script type="module" src="src/script/index.js"></script>
   </body>
 </html>
