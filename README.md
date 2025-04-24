@@ -1,81 +1,86 @@
-# 🌍 FlagGuesser: The Continent Challenge 🎌
+# 🌍 FlagGuesser
 
 Game URL: https://cpiggott-lab.github.io/FlagGuesser/
 
-**FlagGuesser** is an interactive drag-and-drop browser game where you test your geography skills by matching national flags to their correct continents. Think fast, toss accurately, and learn while you play!
+**FlagGuesser** is a drag-and-drop geography game where players match country flags to their correct continent. Built with vanilla JavaScript, HTML, and CSS, this game is fun, educational, and fully responsive across screen sizes.
+
+---
 
 ## 🎮 How to Play
 
-- Flags scroll across the bottom of the screen.
-- Drag each flag and **toss** it into the correct **continent container**.
-- If you're right:  
-  🟢 “Correct! This is the United States.”
-- If you're wrong:  
-  🔴 “Wrong! This flag is Germany, which is in the continent of Europe.”
+- Enter your name to start the game
+- A row of 12 emoji flags appears at the bottom
+- Drag a flag onto the correct continent on the world map
+- ✅ Correct guess? Score increases
+- ❌ Wrong guess? You lose a heart 💜
+- Game ends when you run out of lives or use all the flags
 
-## 🧠 Features
+---
 
-- 🌐 **World Flag Recognition**  
-  Learn over 100 flags from countries around the globe.
+## 🛠 Features
 
-- 🗺️ **Continent-Based Sorting**  
-  Containers for **Africa, Asia, Europe, North America, South America, Oceania, and Antarctica**.
+- 🗺️ **Responsive Continent Zones** – Drop zones scale with the screen size
+- 🚩 **Drag and Drop Flags** – Powered by the HTML5 drag-and-drop API
+- 🎯 **Score and Lives** – Live feedback as you play
+- 🎨 **Stylish UI** – Retro design with neon highlights and emoji flags
+- 🔄 **Replay Option** – Hit "Play Again" to restart a new round instantly
+- 🌐 **Dynamic Flag Shuffling** – Every game is different
 
-- ✅ **Instant Feedback**  
-  Immediate response whether you're right or wrong, with country and continent information.
+---
 
-- 🏆 **Score System**  
-  Get points for every correct toss and aim for a high score!
+## 🧱 Tech Stack
 
-- ❤️ **Lives System**  
-  Be careful—wrong tosses cost lives! Run out, and the game ends.
+- **JavaScript** – Game logic, event handling, DOM interaction
+- **HTML** – Game structure, screens, and layout
+- **CSS** – Styling, transitions, highlight effects
 
-- 🔊 **Sound Effects & Animations** _(Optional)_  
-  Fun effects for correct/incorrect answers and smooth drag animations.
+---
 
-## 🚀 Tech Stack
+## 📁 Project Structure
 
-- **HTML** + **CSS** for structure and styling
-- **JavaScript (Vanilla)** for all interactive gameplay
-- Optional: Add libraries like **Howler.js** for sound or **GSAP** for smooth animations
-
-## 🏁 Getting Started
-
-Clone this repository and open `index.html` in your browser:
-
-```bash
-git clone https://github.com/yourusername/flagguesser-game.git
-cd flagguesser-game
-open index.html
-```
-
-> Or just host it on GitHub Pages or Netlify for friends and family to play!
-
-## 📁 Folder Structure
-
-```
-flagguesser-game/
-├── index.html
-├── style.css
-├── script.js
-├── countries.js       # Country-continent-flag data
+src/
+│
 ├── assets/
-│   ├── flags/         # Flag images
-│   └── sounds/        # Optional sound effects
-└── README.md
-```
+│ ├── world-map.png # Background image
+│ ├── countries-flags.js # Flag data (name, emoji, continent)
+│ └── continent-positions.js # Percentage-based continent positions
+│
+├── style/
+│ └── styles.css # All game styling
+│
+└── script/
+└── index.js # Main game class and logic
 
-## 📚 Future Features (Coming Soon)
+---
 
-- ⏱️ Timer mode
-- 👥 Multiplayer challenge
-- 🧠 Learning Mode with country facts
-- 📊 High Score Leaderboard
+## 🧪 Future Plans
 
-## 🤝 Contributions
+- 🗨️ Show the country name briefly after each drop
+- 🔊 Add drag/drop sound effects and end game sounds
+- 🔁 Replace only the dropped flag instead of the entire row
+- 🔥 Score multiplier for correct streaks
+- ⏱️ Add optional countdown before game starts
+- 🥇 High score saving and display
+- ⌨️ Press Enter to restart from the game over screen
 
-Pull requests are welcome! Got a cool idea like zooming maps, bonus rounds, or avatar flags? Fork and build on it!
+---
 
-## 🧑‍💻 Author
+## 🚀 Getting Started
 
-Made with ❤️ by [Your Name] — a passion project to help kids and adults alike fall in love with geography.
+To play locally:
+
+1. Clone or download this repository
+2. Open `index.html` in your browser
+3. Drag some flags and test your skills!
+
+---
+
+## 📚 License
+
+MIT – open-source and built for fun, learning, and geographic adventure.
+
+---
+
+## 🙌 Why This Game?
+
+I wanted to build a lightweight, interactive learning tool that combines coding practice with something visual and satisfying. No frameworks, no dependencies — just pure DOM, drag-and-drop, and creativity.
