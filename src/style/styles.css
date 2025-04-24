@@ -58,13 +58,12 @@ button:hover {
 }
 .game-title {
   font-size: 4rem;
-  top: 20px;
   border: 8px solid turquoise;
   padding: 10px;
   display: inline-block;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.6);
-  margin-bottom: 0;
+  margin-bottom: 40px;
 }
 #intro-title {
   font-size: 2rem;
@@ -106,19 +105,24 @@ button:hover {
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.6);
 }
+#instructions-ol {
+  width: 350px;
+  list-style-position: left;
+  text-align: left;
+  margin: 10px;
+  margin-top: 8px;
+  padding-left: 10px;
+}
+#instructions-ol li {
+  margin-bottom: 8px;
+}
 #instructions-title {
   border-bottom: 4px solid turquoise;
   display: inline-block;
   margin-bottom: 0;
 }
-#instructions-ol {
-  width: 400px;
-  list-style: none;
-  padding-left: 0;
-}
 /* game screen */
 #container-game {
-  /*hiding for edits to ending screen*/
   position: absolute;
   flex-direction: column;
   top: 0;
@@ -160,7 +164,10 @@ button:hover {
   font-weight: bold;
 }
 .continent-box:hover {
-  background-color: rgba(0, 213, 255, 0.2);
+  background-color: rgba(255, 0, 179, 0.637);
+}
+.continent-box.highlighted {
+  background-color: rgba(255, 0, 179, 0.637);
 }
 /* Replaced with JS version so it is truly dynamic 
 #north-america {
@@ -191,11 +198,20 @@ button:hover {
   position: fixed;
   bottom: 0px;
   width: 100%;
-  height: 130px;
+  height: 100px;
   display: flex;
   justify-content: center;
+  gap: 50px;
   background-color: rgba(0, 0, 0, 0.65);
   border-top: 4px solid turquoise;
+}
+.flag-emoji {
+  font-size: 5rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+  padding-top: 0;
+  margin: 0;
 }
 /* game over screen */
 #gg-ending {
