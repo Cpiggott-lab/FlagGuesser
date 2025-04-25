@@ -40,7 +40,6 @@
         <div id="game-lives"></div>
         <div id="game-score">Score: 0</div>
       </div>
-      <!--hidden continent zones-->
       <div>
         <div class="continent-box" id="north-america">
           <span class="continent-name">North America</span>
@@ -61,25 +60,18 @@
           <span class="continent-name">Australia and Oceania</span>
         </div>
       </div>
-      <!--fill thorugh js-->
+      <div id="popup-answer"></div>
       <div id="flag-row"></div>
     </div>
     <!--ending screen-->
     <div id="full-end-game-container" class="hidden">
-      <!--class="hidden add back in once done working on end game screen-->
       <div class="shared-styles screen-container">
         <h1 class="game-title">FlagGuesser</h1>
         <h3 id="gg-ending">GOOD GAME!</h3>
+        <h4 id="player-score"></h4>
         <div id="container-highscores" class="shared-styles">
           <h1 id="end-game-high-scores">High Scores</h1>
-          <!--player 500 is a placeholder all list contents will be removed once in js-->
-          <ol id="end-game-high-scores-list">
-            <li>player: 500</li>
-            <li>player: 500</li>
-            <li>player: 500</li>
-            <li>player: 500</li>
-            <li>player: 500</li>
-          </ol>
+          <ol id="end-game-high-scores-list"></ol>
           <button id="button-play-again">Play Again</button>
         </div>
       </div>

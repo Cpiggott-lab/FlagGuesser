@@ -17,17 +17,20 @@ class FlagGuesserGame {
     this.continentBoxes = document.querySelectorAll(".continent-box");
     this.mapImage = document.getElementById("background-image");
     this.countries = countries;
+    this.playerScoreReset = document.getElementById("player-score");
     //basic game operation stuff
     this.score = 0;
     this.lives = 5;
     this.playerName = "";
     this.usedCountries = [];
+    this.dropZones(); //to let the continent highlighting work again after adding drag and drop
 
     this.playButton.addEventListener("click", () => this.startGame());
     this.playAgain.addEventListener("click", () => this.startGame());
     window.addEventListener("resize", () => this.positionContinentBoxes()); // for the dynamic size
   }
   startGame() {
+    this.playerScoreReset.textContent = ""; //to reset player score on play again
     this.score = 0;
     this.lives = 5;
     this.usedCountries = [];
@@ -38,7 +41,6 @@ class FlagGuesserGame {
     this.gameScreen.classList.remove("hidden");
 
     this.positionContinentBoxes(); //calling the position continents method in the startGame() to have them show.
-    this.dropZones(); //to let the continent highlighting work again after adding drag and drop
     this.displayFlags(); //calling the adding flag method to show in HTML
     this.updateGameInfo(); //So the hearts appear at game start
   }
@@ -51,7 +53,7 @@ class FlagGuesserGame {
     //looping through the continent boxes set in HTML using the constructor named variable above
     this.continentBoxes.forEach((box) => {
       const id = box.id;
-      const coords = continentPositions[id]; //then matching the ID pulled from HTML to the continent onject positions
+      const coords = continentPositions[id]; //then matching the ID pulled from HTML to the continent object positions
       if (!coords) return;
 
       const left = (coords.x / 100) * mapWidth; //dynamically adjusting the width and height
@@ -164,12 +166,52 @@ class FlagGuesserGame {
           this.displayFlags();
         }, 600);
         if (this.lives <= 0) this.endGame();
+
+        this.showPopupFeedback(countryData.name, correct);
       });
+    });
+  }
+  //Player popup feedback whetehr they were right or wrong.
+  showPopupFeedback(countryName, isCorrect) {
+    const popup = document.createElement("div"); //Div for the message to go in
+    popup.classList.add("popup-feedback");
+    if (isCorrect) {
+      popup.classList.add("correct"); //adding a new class to HTML for styling in CSS
+      popup.textContent = `${countryName} - Correct!`; //Creating the message
+    } else {
+      popup.classList.add("incorrect");
+      popup.textContent = `${countryName} - Incorrect!`;
+    }
+
+    const popupAnswer = document.getElementById("popup-answer");
+    popupAnswer.appendChild(popup); //Posting the message
+
+    //making popup go away after 2.5s
+    setTimeout(() => {
+      popup.remove();
+    }, 2500);
+  }
+  saveHighScore() {
+    const existingScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    existingScores.push({ name: this.playerName, score: this.score });
+    const sorted = existingScores.sort((a, b) => b.score - a.score).slice(0, 5);
+    localStorage.setItem("highScores", JSON.stringify(sorted));
+  }
+  displayHighScores() {
+    const scores = JSON.parse(localStorage.getItem("highScores")) || [];
+    this.highScores.innerHTML = "";
+    scores.forEach((entry) => {
+      const highScoreList = document.createElement("li");
+      highScoreList.textContent = `${entry.name}: ${entry.score}`;
+      this.highScores.appendChild(highScoreList);
     });
   }
   endGame() {
     this.gameScreen.classList.add("hidden");
     this.endScreen.classList.remove("hidden");
+    this.playerScoreReset.textContent = `${this.playerName} Scored ${this.score}!`;
+    this.saveHighScore();
+    this.displayHighScores();
   }
   updateGameInfo() {
     this.gameScore.textContent = `score ${this.score}`;
@@ -182,14 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //FEATURES
-//need to add high scores.
-//Need to add popup window that add the country name.. probably need to add it to drop zones. To call the and push it with backticks into the element. create the element also.. Styles used shared styles probably but will have different positioning.
 //replace only the used flag not the whole flagRow...
-//maybe a start countdown.
-//score multiplier for streaks.
-//Maybe sound affects
-//add eventlistener for the mainscreen to press enter to play again.
 
 //BUGS
-//need to fix bugs.
-//FIXED But watch - bug with the flags sometimes registering wrong when dropped on a continent they belong to... Looks to be only south america, and mexico for north america.
+//title and gg screens are not resizing or staying within the frame (probably need to change it from px margins to vh or something)
