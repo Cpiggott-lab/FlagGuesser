@@ -27,7 +27,14 @@ class FlagGuesserGame {
 
     this.playButton.addEventListener("click", () => this.startGame());
     this.playAgain.addEventListener("click", () => this.startGame());
+    this.playerInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        this.startGame();
+      }
+    });
     window.addEventListener("resize", () => this.positionContinentBoxes()); // for the dynamic size
+    this.playerInput.focus(); //to focus on input line
   }
   startGame() {
     this.playerScoreReset.textContent = ""; //to reset player score on play again
@@ -56,7 +63,7 @@ class FlagGuesserGame {
       const coords = continentPositions[id]; //then matching the ID pulled from HTML to the continent object positions
       if (!coords) return;
 
-      const left = (coords.x / 100) * mapWidth; //dynamically adjusting the width and height
+      const left = (coords.x / 100) * mapWidth; //dynamically adjusting the width and height, coordinates are stored as percentages so we are dividing the percentage by the max of 100% then multiplying it by the total width of the height to find the position of the continent box.
       const top = (coords.y / 100) * mapHeight;
 
       box.style.left = `${left}px`; //applying the correct width and height here.
