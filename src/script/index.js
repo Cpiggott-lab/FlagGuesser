@@ -2,7 +2,7 @@ import { countries } from "../assets/countries-flags.js";
 import { continentPositions } from "../assets/continent-positions.js";
 
 class FlagGuesserGame {
-  constructor(countries) {
+  constructor() {
     //adding all the elements
     this.introScreen = document.getElementById("full-intro-container");
     this.gameScreen = document.getElementById("full-game-container");
@@ -90,7 +90,6 @@ class FlagGuesserGame {
     const randomFlags = Math.floor(Math.random() * availableFlags.length);
     const selectedFlag = availableFlags[randomFlags];
 
-    this.currentFlag = selectedFlag;
     return selectedFlag;
   }
   displayFlags() {
@@ -102,19 +101,19 @@ class FlagGuesserGame {
     }
     // Randomly shuffles array. Subtracting 0.5 gives both negative/positive values, letting .sort() order randomly. Without it returns the same thing everytime.
     const shuffled = availableFlags.sort(() => Math.random() - 0.5);
-    const flagChoices = shuffled.slice(0, 12);
+    const flagChoices = shuffled.slice(0, 3);
 
     this.flagRow.innerHTML = ""; //clearing flag row.
     flagChoices.forEach((flag) => {
       const flagElement = document.createElement("div");
-      flagElement.textContent = flag.emoji; //addin the flag emoji to the div.
+      flagElement.textContent = flag.emoji; //adding the flag emoji to the div.
       flagElement.classList.add("flag-emoji"); //adding the css class for styling
 
       flagElement.setAttribute("draggable", true); //actually making it draggable thing.
       flagElement.dataset.country = flag.name; //saving the flag to check the country name to the continent name
       //the magic part of making it draggable with event listener
       flagElement.addEventListener("dragstart", (event) => {
-        event.dataTransfer.setData("text/plain", flag.name);
+        event.dataTransfer.setData("text/plain", flag.name); // text/plain is telling the browser it is no other form of data then text being saved in the drag memory.
       });
 
       this.flagRow.appendChild(flagElement); //finally adding it to the row.
@@ -127,15 +126,31 @@ class FlagGuesserGame {
       zone.addEventListener("dragover", (event) => {
         event.preventDefault(); //needed to allow drop
         zone.classList.add("highlighted");
+        event.dataTransfer.dropEffect = "move"; //removes the plus icon when moving the flags
+
+        const continentName = zone.querySelector(".continent-name");
+        if (continentName) {
+          continentName.classList.add("grow"); //on the zone growing the text name for the continent
+        }
       });
       //remove highlight after out of box
       zone.addEventListener("dragleave", () => {
         zone.classList.remove("highlighted");
+
+        const continentName = zone.querySelector(".continent-name");
+        if (continentName) {
+          continentName.classList.remove("grow"); //on the zone being left the text name for the continent shrinks
+        }
       });
       //removing after drop. otherwise it stays
       zone.addEventListener("drop", (event) => {
         event.preventDefault(); // it tries to open the file on drop so need to stop that
         zone.classList.remove("highlighted");
+
+        const continentName = zone.querySelector(".continent-name");
+        if (continentName) {
+          continentName.classList.remove("grow"); //on the zone being left the text name for the continent shrinks
+        }
 
         const droppedCountry = event.dataTransfer.getData("text/plain"); //grabbing the name of the coutnry dragged
 
@@ -160,18 +175,18 @@ class FlagGuesserGame {
         this.updateGameInfo();
         this.usedCountries.push(countryData.name);
 
-        //gives a delay on the zone color otherwise you cant see it, and the flags come too fast.
+        //gives a delay on the zone color otherwise you cant see it on the drop zone, and the flags come too fast.
         setTimeout(() => {
           zone.style.backgroundColor = "";
           this.displayFlags();
-        }, 600);
+        }, 300);
         if (this.lives <= 0) this.endGame();
 
         this.showPopupFeedback(countryData.name, correct);
       });
     });
   }
-  //Player popup feedback whetehr they were right or wrong.
+  //Player popup feedback whether they were right or wrong.
   showPopupFeedback(countryName, isCorrect) {
     const popup = document.createElement("div"); //Div for the message to go in
     popup.classList.add("popup-feedback");
@@ -189,7 +204,7 @@ class FlagGuesserGame {
     //making popup go away after 2.5s
     setTimeout(() => {
       popup.remove();
-    }, 2500);
+    }, 3000);
   }
   saveHighScore() {
     const existingScores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -219,12 +234,7 @@ class FlagGuesserGame {
   }
 } //ending bracket of class.
 
+//Explain DOMContentLoaded makes it so the browser fully loads before it begins executing the JS file. In my use case it would break multiple elements that would come up as null upon load. Best practice to always add to file, which is why I am wrapping my entire game instance in the eventListener calling FlagGuesserGame
 document.addEventListener("DOMContentLoaded", () => {
   new FlagGuesserGame(countries);
 });
-
-//FEATURES
-//replace only the used flag not the whole flagRow...
-
-//BUGS
-//title and gg screens are not resizing or staying within the frame (probably need to change it from px margins to vh or something)
