@@ -52,9 +52,9 @@ button:hover {
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
+  max-width: 450px;
+  padding: 20px;
   text-align: center;
-  padding: 40px;
-  padding-top: 0px;
 }
 .game-title {
   font-size: 4rem;
@@ -138,19 +138,22 @@ button:hover {
 }
 #game-lives {
   display: flex;
-  font-size: 2rem;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  gap: 1vw;
   margin-bottom: 0;
 }
 #game-score {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 2rem);
   color: black;
   font-weight: 700;
+  margin: 1vh;
 }
 .continent-box {
   position: absolute;
-  width: 10vw;
-  height: 10vw;
+  width: 15vw;
+  height: 15vw;
   background-color: rgba(0, 255, 255, 0);
   border-radius: 50%;
   transition: background-color 0.2s ease-in-out;
@@ -163,37 +166,20 @@ button:hover {
   position: absolute;
   color: black;
   font-weight: bold;
+  font-size: clamp(0.5rem, 1vw, 1.5rem);
+  text-align: center;
+  pointer-events: none; /* this stops the continent name from blocking the flag drops on the container*/
+  transition: font-size 0.3s ease;
 }
-.continent-box:hover {
-  background-color: rgba(255, 0, 179, 0.637);
+.continent-box.highlighted .continent-name {
+  font-size: clamp(1rem, 2vw, 3rem);
 }
-.continent-box.highlighted {
-  background-color: rgba(255, 0, 179, 0.637);
+.continent-name.grow {
+  font-size: clamp(1rem, 2vw, 3rem);
+  transition: font-size 0.3 ease;
 }
-/* Replaced with JS version so it is truly dynamic 
-#north-america {
-  top: 150px;
-  left: 290px;
-}
-#south-america {
-  top: 440px;
-  left: 450px;
-}
-#europe {
-  top: 75px;
-  left: 760px;
-}
-#asia {
-  top: 150px;
-  left: 1150px;
-}
-#africa {
-  top: 300px;
-  left: 790px;
-}
-#australia {
-  top: 500px;
-  left: 1320px;
+/* .continent-box:hover .continent-name {
+  font-size: clamp(1rem, 2vw, 3rem);
 } */
 #popup-answer {
   position: fixed;
@@ -213,7 +199,7 @@ button:hover {
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.65);
   color: white;
-  animation: fade 2.5s ease-out forwards;
+  animation: fade 3.5s ease-out forwards;
 }
 .popup-feedback.correct {
   border: 2px solid lime;
@@ -233,24 +219,41 @@ button:hover {
     transform: translateY(-20px);
   }
 }
+#flag-row-styling {
+  background-color: rgba(0, 0, 0, 0.65);
+}
 #flag-row {
   position: fixed;
-  bottom: 0px;
-  width: 100%;
-  height: 100px;
+  bottom: 1vh;
+  width: clamp(300px, 20vw, 600px);
+  height: clamp(80px, 12vh, 150px);
   display: flex;
   justify-content: center;
-  gap: 50px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid turquoise;
+  border-radius: 20px;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.65);
-  border-top: 4px solid turquoise;
 }
 .flag-emoji {
-  font-size: 5rem;
+  font-size: clamp(
+    2rem,
+    /*min*/ 7vw,
+    /*preferred*/ 5rem /*max*/
+  ); /* makes it responsive for smaller displays */
   cursor: pointer;
   user-select: none;
-  padding: 0;
-  padding-top: 0;
   margin: 0;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
 /* game over screen */
 #gg-ending {
