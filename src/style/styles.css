@@ -185,7 +185,8 @@ button:hover {
 #popup-answer {
   position: fixed;
   bottom: 120px;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
